@@ -1,0 +1,24 @@
+[tool.bandit]
+# Exclude/ignore of files is currently broken in Bandit.
+exclude = [".cache",".git",".github",".tox","build","dist","tests"]
+
+[tool.black]
+color = true
+
+[tool.coverage.xml]
+output = "tests/coverage-report.xml"
+
+[tool.isort]
+color_output = true
+profile = "black"
+
+[tool.pylint.master]
+django-settings-module = "tests.testproject.settings"
+load-plugins = ["pylint_django"]
+output-format = "colorized"
+
+[tool.pytest.ini_options]
+addopts = "--junitxml=tests/unittests-report.xml --color=yes --verbose"
+DJANGO_SETTINGS_MODULE = "testproject.settings"
+python_files = ["tests.py","test_*.py","*_tests.py"]
+python_paths = ["tests"]

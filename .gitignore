@@ -1,0 +1,28 @@
+# IDEs & editors
+/.idea/
+/.vscode/
+
+# cache
+*.py[cod]
+__pycache__/
+
+# virtualenv
+/venv/
+/virtualenv/
+
+# packaging
+/*.egg-info/
+/build/
+/dist/
+
+# testing
+/.cache/
+/.pytest_cache/
+/.tox/
+/pytestdebug.log
+/tests/*-report.json
+/tests/*-report.xml
+/tests/testproject.sqlite
+.coverage
+
+Pipfile.lock
