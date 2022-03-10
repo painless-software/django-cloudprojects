@@ -1,5 +1,5 @@
 """
-Django settings for test_project project.
+Django settings for testproject project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/stable/topics/settings/
@@ -20,8 +20,10 @@ SECRET_KEY = 'insecure-random-key'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = ['*'] if DEBUG else [
+    # List your valid domain patterns here. See also
+    # https://docs.djangoproject.com/en/stable/ref/settings/#allowed-hosts
+]
 
 # Application definition
 
@@ -36,11 +38,11 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE_CLASSES = [
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -53,16 +55,17 @@ TEMPLATES = [
         'OPTIONS': {
             'debug': DEBUG,
             'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
             ],
         },
     },
 ]
 
 ROOT_URLCONF = 'testproject.urls'
-
 WSGI_APPLICATION = 'testproject.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/stable/ref/settings/#databases
@@ -78,13 +81,9 @@ DATABASES = {
 # https://docs.djangoproject.com/en/stable/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/stable/howto/static-files/
