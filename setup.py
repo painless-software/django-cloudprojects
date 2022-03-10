@@ -16,7 +16,7 @@ def read_file(filename):
 
 
 setup(
-    name=f'django-{package.__name__}',
+    name='django-cloudprojects',
     version=package.__version__,
     author=package.__author__,
     author_email=package.__email__,
