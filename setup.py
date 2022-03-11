@@ -25,7 +25,6 @@ setup(
     long_description_content_type='text/x-rst',
     url=package.__url__,
     packages=find_packages(exclude=['test*']),
-    include_package_data=True,
     keywords=[
         'cloud',
         'kubernetes',
@@ -50,5 +49,8 @@ setup(
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
+    ],
+    install_requires=[
+        'django-allauth',
     ],
 )
