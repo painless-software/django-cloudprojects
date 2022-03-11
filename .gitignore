@@ -22,7 +22,7 @@ __pycache__/
 /pytestdebug.log
 /tests/*-report.json
 /tests/*-report.xml
-/tests/testproject.sqlite
+/tests/testproject/*.sqlite3
 .coverage
 
 Pipfile.lock

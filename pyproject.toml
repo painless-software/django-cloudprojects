@@ -13,12 +13,13 @@ color_output = true
 profile = "black"
 
 [tool.pylint.master]
-django-settings-module = "tests.testproject.settings"
+django-settings-module = "project.settings"
+init-hook = "import sys; sys.path.append('tests/testproject')"
 load-plugins = ["pylint_django"]
 output-format = "colorized"
 
 [tool.pytest.ini_options]
 addopts = "--junitxml=tests/unittests-report.xml --color=yes --verbose"
-DJANGO_SETTINGS_MODULE = "testproject.settings"
+DJANGO_SETTINGS_MODULE = "project.settings"
 python_files = ["tests.py","test_*.py","*_tests.py"]
-python_paths = ["tests"]
+pythonpath = ["tests","tests/testproject"]

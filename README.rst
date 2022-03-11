@@ -57,25 +57,83 @@ The easiest way to install *django-cloudprojects* is with pip:
 
 .. code:: console
 
-    $ pip install django-cloudprojects
+    pip install django-cloudprojects
 
 Basic Usage
 ===========
 
-1. Add ``cloudprojects`` to your Django project settings, e.g.
+1. In your Django project settings, add ``cloudprojects`` and its dependencies
+   to ``INSTALLED_APPS``, optionally omitting the authentication providers you
+   don't intend to use, add the required authentication backends for Allauth
+   and the Django Admin, and make sure ``SITE_ID`` is defined, e.g.
 
 .. code:: python
 
     INSTALLED_APPS = [
+        'django.contrib.auth',
+        'django.contrib.messages',
+        'django.contrib.sites',
         ...
+        'allauth',
+        'allauth.account',
+        'allauth.socialaccount',
+        # 'allauth.socialaccount.providers.bitbucket_oauth2',
+        # 'allauth.socialaccount.providers.github',
+        'allauth.socialaccount.providers.gitlab',
         'cloudprojects',
     ]
 
-2. Add ``cloudprojects`` to your project ``urls`` module, e.g.
+    AUTHENTICATION_BACKENDS = [
+        'django.contrib.auth.backends.ModelBackend',
+        'allauth.account.auth_backends.AuthenticationBackend',
+    ]
+
+    SITE_ID = 1
+
+2. Add ``cloudprojects`` to your project's ``urls`` module, e.g.
 
 .. code:: python
 
     urlpatterns = [
-        url('', cloudprojects.urls),
         ...
+        path('', include('cloudprojects.urls')),
     ]
+
+3. In your Django project settings, configure the authentication providers as
+   described in the `Allauth documentation`_, e.g.
+
+.. code:: python
+
+    SOCIALACCOUNT_PROVIDERS = {
+        'github': {
+            'GITHUB_URL': 'https://github.enterprise.local',
+            'SCOPE': ['api'],
+        },
+        'gitlab': {
+            'GITLAB_URL': 'https://gitlab.selfhosted.local',
+            'SCOPE': ['api'],
+        },
+    }
+
+4. Register the authentication apps with your VCS services as described in the
+   Allauth documentation:
+
+   - `Bitbucket provider`_
+   - `GitHub provider`_
+   - `GitLab provider`_
+
+   We recommend writing a management command to automatically configure those
+   values during deployment.  See our `test project`_ for a suggestion on how
+   an implementation may look like.
+
+
+.. _Allauth documentation:
+    https://django-allauth.readthedocs.io/en/latest/providers.html
+.. _GitHub provider:
+    https://django-allauth.readthedocs.io/en/latest/providers.html#github
+.. _GitLab provider:
+    https://django-allauth.readthedocs.io/en/latest/providers.html#gitlab
+.. _Bitbucket provider:
+    https://django-allauth.readthedocs.io/en/latest/providers.html#bitbucket
+.. _test project:
+    https://github.com/painless-software/django-cloudprojects/tree/main/tests/testproject
