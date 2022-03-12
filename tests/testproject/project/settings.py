@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'insecure-random-key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = not False
+DEBUG = False
 
 ALLOWED_HOSTS = ['*'] if DEBUG else [
     # List your valid domain patterns here. See also
