@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django_saml',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -74,6 +75,7 @@ TEMPLATES = [
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
+    'django_saml.backends.SamlUserBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
@@ -104,3 +106,36 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/stable/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# SAML configuration
+# https://pypi.org/project/python3-saml-django/
+
+SAML_SP = {
+    "entityId": "https://example.com/saml/metadata/",
+    "assertionConsumerService": {
+        "url": "https://example.com/saml/acs/",
+        "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+    },
+    "singleLogoutService": {
+        "url": "https://example.com/saml/sls/",
+        "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+    },
+    "NameIDFormat": "urn:oasis:names:tc:SAML:2.0:nameid-format:unspecified",
+    "x509cert": "<can also be loaded by file, see SAML_BASE_DIRECTORY>",
+    "privateKey": "<can also be loaded by file, see SAML_BASE_DIRECTORY>"
+}
+SAML_IDP = {
+    "entityId": "https://example.com/saml/metadata/",
+    "singleSignOnService": {
+        "url": "https://example.com/trust/saml2/http-post/sso/",
+        "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+    },
+    "singleLogoutService": {
+        "url": "https://example.com/trust/saml2/http-redirect/slo/",
+        "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+    },
+    "x509cert": "<cert here>"
+}
+# or one of:
+# SAML_IDP_FILE = BASE_DIR / 'idp_meta.xml'
+# SAML_IDP_URL = 'https://example.com/saml/metadata/'

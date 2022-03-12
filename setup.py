@@ -50,6 +50,9 @@ setup(
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
     ],
+    extras_require={
+        'saml': ['python3-saml-django'],
+    },
     install_requires=[
         'django-allauth',
     ],
