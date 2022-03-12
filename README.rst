@@ -59,6 +59,23 @@ The easiest way to install *django-cloudprojects* is with pip:
 
     pip install django-cloudprojects
 
+SAML support is available as an installation option:
+
+.. code:: console
+
+    pip install django-cloudprojects[saml]
+
+Note that SAML support requires additional libraries installed on your target
+system, e.g. for Debian/Ubuntu- and RedHat/CentOS-based systems:
+
+.. code:: console
+
+   sudo apt-get install libxml2-dev libxmlsec1-dev libxmlsec1-openssl
+
+.. code:: console
+
+   sudo yum install libxml2-devel xmlsec1-devel xmlsec1-openssl-devel libtool-ltdl-devel
+
 Basic Usage
 ===========
 
@@ -74,6 +91,7 @@ Basic Usage
         'django.contrib.messages',
         'django.contrib.sites',
         ...
+        # 'django_saml',
         'allauth',
         'allauth.account',
         'allauth.socialaccount',
@@ -85,6 +103,7 @@ Basic Usage
 
     AUTHENTICATION_BACKENDS = [
         'django.contrib.auth.backends.ModelBackend',
+        'django_saml.backends.SamlUserBackend',
         'allauth.account.auth_backends.AuthenticationBackend',
     ]
 
@@ -126,6 +145,9 @@ Basic Usage
    values during deployment.  See our `test project`_ for a suggestion on how
    an implementation may look like.
 
+5. If you intend to use SAML you need to add all required settings to your
+   project's Django settings, as described in the `python3-saml-django docs`_.
+
 
 .. _Allauth documentation:
     https://django-allauth.readthedocs.io/en/latest/providers.html
@@ -137,3 +159,5 @@ Basic Usage
     https://django-allauth.readthedocs.io/en/latest/providers.html#bitbucket
 .. _test project:
     https://github.com/painless-software/django-cloudprojects/tree/main/tests/testproject
+.. _python3-saml-django docs:
+    https://pypi.org/project/python3-saml-django/
