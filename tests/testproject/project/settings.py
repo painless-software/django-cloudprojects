@@ -8,6 +8,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/stable/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,11 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'insecure-random-key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv('DJANGO_DEBUG') in ['True', 'true', '1']
 
 ALLOWED_HOSTS = ['*'] if DEBUG else [
     # List your valid domain patterns here. See also
     # https://docs.djangoproject.com/en/stable/ref/settings/#allowed-hosts
+    'example.com',
 ]
 
 # Application definition
@@ -91,7 +93,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'project.sqlite3',
+        'NAME': BASE_DIR / 'project.sqlite3' if DEBUG else ':memory:',
     }
 }
 

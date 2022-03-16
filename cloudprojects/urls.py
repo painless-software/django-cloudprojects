@@ -2,18 +2,15 @@
 URL configuration for django-cloudprojects.
 """
 
+from django.conf import settings
 from django.urls import include, path
 
 urlpatterns = []
 
-try:
-    import django_saml
-
+if 'django_saml' in settings.INSTALLED_APPS:
     urlpatterns = [
-        path('saml/', django_saml.urls),
+        path('saml/', include('django_saml.urls')),
     ]
-except ImportError:
-    pass
 
 urlpatterns += [
     path('', include('allauth.urls')),

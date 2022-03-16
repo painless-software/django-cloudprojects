@@ -25,4 +25,7 @@ __pycache__/
 /tests/testproject/*.sqlite3
 .coverage
 
+# development
+Pipfile
 Pipfile.lock
+requirements.txt
