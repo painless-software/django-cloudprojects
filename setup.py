@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Packaging setup for the django-cloudprojects Python package.
 """
@@ -10,20 +9,21 @@ import cloudprojects as package
 
 
 def read_file(filename):
-    """Get the contents of a file"""
-    with (Path(__file__).resolve().parent / filename).open() as file:
-        return file.read()
+    """Read a text file and return its contents."""
+    project_home = Path(__file__).parent.resolve()
+    file_path = project_home / filename
+    return file_path.read_text(encoding="utf-8")
 
 
 setup(
     name='django-cloudprojects',
     version=package.__version__,
-    author=package.__author__,
-    author_email=package.__email__,
+    author='Peter Bittner',
+    author_email='django@bittner.it',
     description=package.__doc__.strip(),
     long_description=read_file('README.rst'),
     long_description_content_type='text/x-rst',
-    url=package.__url__,
+    url='https://github.com/painless-software/django-cloudprojects',
     packages=find_packages(exclude=['test*']),
     keywords=[
         'cloud',
@@ -56,4 +56,5 @@ setup(
     install_requires=[
         'django-allauth',
     ],
+    python_requires='>=3.6',
 )
