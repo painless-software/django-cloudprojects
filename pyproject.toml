@@ -5,6 +5,9 @@ exclude = [".cache",".git",".github",".tox","build","dist","tests"]
 [tool.black]
 color = true
 
+[tool.coverage.run]
+source = ["cloudprojects"]
+
 [tool.coverage.xml]
 output = "tests/coverage-report.xml"
 
