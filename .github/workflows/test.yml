@@ -12,7 +12,7 @@ jobs:
   python-django:
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 5
+      fail-fast: false
       matrix:
         python-version:
         - '3.6'
