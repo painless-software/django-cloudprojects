@@ -161,3 +161,32 @@ Basic Usage
     https://github.com/painless-software/django-cloudprojects/tree/main/tests/testproject
 .. _python3-saml-django docs:
     https://pypi.org/project/python3-saml-django/
+
+Development
+===========
+
+You may use the included `test project`_ for developing interactively, e.g.
+
+.. code:: console
+
+    pip install .[saml]
+    pip install pip-tools tox
+    pip-compile  # generates requirements.txt
+
+Set ``DEBUG = True`` in Django settings to persist changes in a local database,
+e.g.
+
+.. code:: console
+
+    export DJANGO_DEBUG=true
+
+    tests/testproject/manage.py migrate
+    tests/testproject/manage.py runserver
+
+Run the tests using Tox, e.g.
+
+.. code:: console
+
+    tox -lv
+    tox -e flake8,py39-django40
+    tox -e clean
