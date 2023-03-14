@@ -1,12 +1,14 @@
 [tool.bandit]
-# Exclude/ignore of files is currently broken in Bandit.
-exclude = [".cache",".git",".github",".tox","build","dist","tests"]
+exclude_dirs = [".cache",".git",".github",".tox","build","dist","tests"]
 
 [tool.black]
 color = true
 
 [tool.coverage.run]
 source = ["cloudprojects"]
+
+[tool.coverage.report]
+show_missing = true
 
 [tool.coverage.xml]
 output = "tests/coverage-report.xml"
