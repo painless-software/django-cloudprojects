@@ -170,8 +170,8 @@ You may use the included `test project`_ for developing interactively, e.g.
 .. code:: console
 
     pip install .[saml]
-    pip install pip-tools tox
-    pip-compile  # generates requirements.txt
+    pip install tox
+    tox -e requirements  # generates requirements.txt
 
 Set ``DEBUG = True`` in Django settings to persist changes in a local database,
 e.g.
