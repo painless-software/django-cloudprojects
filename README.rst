@@ -10,10 +10,10 @@ and microservices on cloud platforms, the DevOps (DevSecOps) way.
 .. |latest-version| image:: https://img.shields.io/pypi/v/django-cloudprojects.svg
    :alt: Latest version on PyPI
    :target: https://pypi.org/project/django-cloudprojects
-.. |checks-status| image:: https://img.shields.io/github/workflow/status/painless-software/django-cloudprojects/Checks/main?label=Checks&logo=github
+.. |checks-status| image:: https://github.com/painless-software/django-cloudprojects/actions/workflows/check.yml/badge.svg
    :alt: GitHub Workflow Status
    :target: https://github.com/painless-software/django-cloudprojects/actions/workflows/check.yml
-.. |tests-status| image:: https://img.shields.io/github/workflow/status/painless-software/django-cloudprojects/Tests/main?label=Tests&logo=github
+.. |tests-status| image:: https://github.com/painless-software/django-cloudprojects/actions/workflows/test.yml/badge.svg
    :alt: GitHub Workflow Status
    :target: https://github.com/painless-software/django-cloudprojects/actions/workflows/test.yml
 .. |python-support| image:: https://img.shields.io/pypi/pyversions/django-cloudprojects.svg
